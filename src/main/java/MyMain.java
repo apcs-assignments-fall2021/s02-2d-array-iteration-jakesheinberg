@@ -7,8 +7,14 @@ public class MyMain {
     //      int x = "apple".compareTo("banana"); // x is negative
     //      int y = "banana".compareTo("apple"); // y is positive
     public static String findLastWord(String[] arr) {
-        // YOUR CODE HERE
-        return "";
+        String current= "aaaaaaaa";
+        for(int i=0; i< arr.length; i++){
+            if(arr[i].compareTo(current)>0){
+                current=arr[i];
+            }
+        }
+
+        return current;
     }
 
     // Given a 2D array, return an 1D array of the last word
@@ -16,8 +22,17 @@ public class MyMain {
     // You can assume that the matrix will not be empty
     // Hint: use the previous method to help yourself!
     public static String[] findLastWord2D(String[][] mat) {
-        // YOUR CODE HERE
-        return null;
+       String [] lastWords = new String [mat[0].length];
+        for(int row=0; row<mat.length;row++){
+           String curr=" ";
+           String [] arr = mat[row];
+           curr=findLastWord(arr);
+           lastWords[row]=curr;
+            }
+
+
+
+        return lastWords;
     }
 
     // Given a 2D array and some column index col
@@ -30,8 +45,15 @@ public class MyMain {
     // Hint: remember how the indexOf() method works?
     // alternatively, consider the contains() method
     public static int appleCounter(String[][] mat, int col) {
-        // YOUR CODE HERE
-        return -1;
+        int count =0;
+        String [] row=mat[col];
+        for(int i=0; i <mat.length;){
+            if (row[i]=="apple"){
+                count++;
+            }
+
+        }
+        return count;
     }
 
     // Given a 2D array, return the column number corresponding
@@ -41,7 +63,8 @@ public class MyMain {
     // Hint: use your previous method!
     // Hint 2: you might need to loop through the columns!
     public static int findMostAppleColumn(String[][] mat) {
-        // YOUR CODE HERE
+        int biggest = 0;
+        for
         return -1;
     }
 
