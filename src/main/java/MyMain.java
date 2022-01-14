@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MyMain {
     // Returns the String that shows up latest alphabetically
     // in a normal 1D String array
@@ -8,9 +10,9 @@ public class MyMain {
     //      int y = "banana".compareTo("apple"); // y is positive
     public static String findLastWord(String[] arr) {
         String current= "aaaaaaaa";
-        for(int i=0; i< arr.length; i++){
-            if(arr[i].compareTo(current)>0){
-                current=arr[i];
+        for (String s : arr) {
+            if (s.compareTo(current) > 0) {
+                current = s;
             }
         }
 
@@ -24,7 +26,7 @@ public class MyMain {
     public static String[] findLastWord2D(String[][] mat) {
        String [] lastWords = new String [mat[0].length];
         for(int row=0; row<mat.length;row++){
-           String curr=" ";
+           String curr;
            String [] arr = mat[row];
            curr=findLastWord(arr);
            lastWords[row]=curr;
@@ -47,8 +49,8 @@ public class MyMain {
     public static int appleCounter(String[][] mat, int col) {
         int count =0;
         String [] row=mat[col];
-        for(int i=0; i <mat.length;){
-            if (row[i]=="apple"){
+        for(int i=0; i <mat.length;i++){
+            if (row[i].equals("apple")){
                 count++;
             }
 
@@ -63,8 +65,12 @@ public class MyMain {
     // Hint: use your previous method!
     // Hint 2: you might need to loop through the columns!
     public static int findMostAppleColumn(String[][] mat) {
-        int biggest = 0;
-        for
+        int biggest =0;
+        for (int col=0; col<mat.length;col++){
+            for(int row=0;row<mat[0].length;row++){
+
+            }
+        }
         return -1;
     }
 
@@ -93,8 +99,20 @@ public class MyMain {
     //       from top to bottom
 
     public static int[][] pascal(int height) {
-        // YOUR CODE HERE
-        return null;
+        int [][]mat= new int[height][height];
+        for(int row=0;row<height-1;row++){
+            for(int col=0;col<height-1;col++){
+                mat[row+1][col+1]=mat[row][col]+mat[row][col+1];
+            }
+        }
+        for(int i=0; i<height;i++){
+            mat[i][0]=1;
+        }
+        for(int i=0; i<height;i++){
+            mat[i][0]=1;
+            mat[i][i]=1;
+        }
+        return mat;
     }
 
 
@@ -130,8 +148,29 @@ public class MyMain {
     // * do you see any pattern for the row and col indexes for a diagonal?
     // * can you use a for loop that goes through that pattern?
     public static boolean isMagic(int[][] mat) {
-        // YOUR CODE HERE
-        return false;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int y=0;
+        int z=0;
+        for(int i=0; i<mat.length;i++){
+            int a =0;
+            int b=0;
+            for(int j=0;j<mat.length;j++){
+                a+=mat[i][j];
+                b+=mat[j][i];
+            }
+            y+=mat[i][i];
+            z+=mat[mat.length-(i+1)][mat.length-(i+1)];
+            list.add(a);
+            list.add(b);
+        }
+        list.add(y);
+        list.add(z);
+        for(int a: list){
+            if(a!=list.get(0)){
+                return false;
+            }
+        }
+        return true;
     }
 
 
