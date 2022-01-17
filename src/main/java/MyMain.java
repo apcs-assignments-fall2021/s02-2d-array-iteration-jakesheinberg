@@ -48,12 +48,10 @@ public class MyMain {
     // alternatively, consider the contains() method
     public static int appleCounter(String[][] mat, int col) {
         int count =0;
-        String [] row=mat[col];
-        for(int i=0; i <mat.length;i++){
-            if (row[i].equals("apple")){
+        for(int row = 0; row<mat.length; row++){
+            if(mat[row][col].contains("apple")){
                 count++;
             }
-
         }
         return count;
     }
@@ -66,12 +64,15 @@ public class MyMain {
     // Hint 2: you might need to loop through the columns!
     public static int findMostAppleColumn(String[][] mat) {
         int biggest =0;
-        for (int col=0; col<mat.length;col++){
-            for(int row=0;row<mat[0].length;row++){
-
+        int colind=0;
+        for (int col=0; col<mat[0].length;col++){
+               if(appleCounter(mat, col)>biggest){
+                   biggest=appleCounter(mat, col);
+                   colind=col;
+               }
             }
-        }
-        return -1;
+
+        return colind;
     }
 
 
@@ -100,11 +101,7 @@ public class MyMain {
 
     public static int[][] pascal(int height) {
         int [][]mat= new int[height][height];
-        for(int row=0;row<height-1;row++){
-            for(int col=0;col<height-1;col++){
-                mat[row+1][col+1]=mat[row][col]+mat[row][col+1];
-            }
-        }
+
         for(int i=0; i<height;i++){
             mat[i][0]=1;
         }
@@ -112,6 +109,9 @@ public class MyMain {
             mat[i][0]=1;
             mat[i][i]=1;
         }
+        for(int row=0;row<height-1;row++){
+            for(int col=0;col<height-1;col++){
+                mat[row+1][col+1]=mat[row][col]+mat[row][col+1];}}
         return mat;
     }
 
